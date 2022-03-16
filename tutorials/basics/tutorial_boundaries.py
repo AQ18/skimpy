@@ -36,7 +36,7 @@ metabolites = ReversibleMichaelisMenten.Reactants(substrate='A', product='B')
 ## ELEMENTARY Method
 parameters = ReversibleMichaelisMenten.Parameters(
     vmax_forward = 1,
-    vmax_backward = 0.5,
+    k_equilibrium =2,
     km_substrate = 10,
     km_product = 10,
     total_enzyme_concentration = 1,
@@ -65,9 +65,9 @@ this_model.add_boundary_condition(the_boundary_condition)
 ## Full rate method
 
 
-this_model.compile_ode(sim_type = ELEMENTARY)
+this_model.compile_ode(sim_type = QSSA)
 
-this_model.initial_conditions.A = 10.0
+this_model.parameters.A.value = 10
 this_model.initial_conditions.B = 1.0
 this_model.initial_conditions.pfk = 1.0
 
